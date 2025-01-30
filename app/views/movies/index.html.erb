@@ -1,0 +1,35 @@
+<h1>Lista de Filmes</h1>
+
+<!-- Links para ordenação -->
+<p>
+  <a href="?sort_by=title">Ordenar por Título</a> |
+  <a href="?sort_by=release_date">Ordenar por Data de Lançamento</a>
+</p>
+
+<!-- Formulário de Busca -->
+<%= form_with url: movies_path, method: :get, local: true do |form| %>
+  <%= form.text_field :search, placeholder: "Pesquisar filmes..." %>
+  <%= form.submit "Buscar" %>
+<% end %>
+
+<!-- Tabela de Filmes -->
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Título</th>
+    <th>Data de Lançamento</th>
+    <th>Classificação</th>
+    <th>Descrição</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @movies.each do |movie| %>
+    <tr>
+      <td><%= movie.title %></td>
+      <td><%= movie.release_date %></td>
+      <td><%= movie.rating %></td>
+      <td><%= movie.description %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
